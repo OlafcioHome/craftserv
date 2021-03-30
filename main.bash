@@ -33,7 +33,7 @@ then
   echo "generation-settings=">>$HOME/.cserv/server.properties
   echo "sync-chunk-writes=true">>$HOME/.cserv/server.properties
   echo "force-gamemode=false">>$HOME/.cserv/server.properties
-  echo -n "Enable Nether? (Yes or no): "
+  echo -n "Enable Nether? (Y/n): "
   read nsne;
   case $nsne in
     "") nsne=true ;;
@@ -42,14 +42,12 @@ then
     "yes") nsne=true ;;
     "Yes") nsne=true ;;
     "n") nsne=false ;;
-    "N") nsne=false ;;
     "no") nsne=false ;;
-    "No") nsne=false ;;
     *) nsne=true
   esac
   echo "allow-nether=$nsne">>$HOME/.cserv/server.properties
   echo "enforce-whitelist=false">>$HOME/.cserv/server.properties
-  echo -n "Default server gamemode (S, a, c, sp): "
+  echo -n "Default server gamemode (S - survival, a - adventure, c - creative, sp - spectator): "
   read nsdsg;
   case $nsdsg in
     "") nsdsg="survival" ;;
@@ -143,15 +141,15 @@ then
   echo -n "What is your operating system? [linux/macos]: "
   read wiyos;
   case $wiyos in
-    "linux") xdg-open https://serverjars.com/jars/proxies/waterfall/waterfall-1.12.jar ;;
-    "macos") open https://serverjars.com/jars/proxies/waterfall/waterfall-1.12.jar ;;
+    "linux") wget https://serverjars.com/jars/proxies/waterfall/spigot-1.12.2.jar ;;
+    "macos") echo "(wget required)"; wget https://serverjars.com/jars/servers/spigot/spigot-1.12.2.jar ;;
     *) echo "Operating system not supported or does not exists :("
   esac
-  mv ~/Downloads/waterfall-1.16.jar $HOME/.cserv/minecraft_server.jar
+  mv ~/Downloads/spigot-1.12.2.jar $HOME/.cserv/minecraft_server.jar
 fi
 echo "Starting server..."
 oup123456="`pwd`"
 cd $HOME/.cserv
-java -jar waterfall-1.16.jar
+java -jar minecraft_server.jar
 cd $oup123456
 echo "---"
